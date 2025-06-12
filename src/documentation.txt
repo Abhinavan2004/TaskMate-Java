@@ -1,0 +1,11 @@
+we are using bootstap css in  this project 
+
+===========================================
+
+
+there is one file named as all_css.jsp it helps in storing the bootstrap cdn  css & js codes and we can inlcude then in any file when reqd 
+<%@include file="file_name"%>
+
+==============================================
+
+
