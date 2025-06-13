@@ -10,6 +10,26 @@
 <body>
 <%@include file = "components/navbar.jsp" %>
 
+
+<%
+String msg = (String) session.getAttribute("SucMsg");
+if(msg != null){
+%>
+<div class="alert alert-success" role="alert">
+<%=msg%>
+</div>
+<% session.removeAttribute("SucMsg"); } %>
+
+
+
+<%
+String fmsg = (String) session.getAttribute("FailMsg");
+if(fmsg != null){
+%>
+<div class="alert alert-danger" role="alert">
+<%=fmsg %></div>
+<% session.removeAttribute("FailMsg"); } %>
+
 <h2 class="text-center mt-5">TODAY'S TASKS</h2>
 
 <!-- for just checking that the mysql is properly connected or not  

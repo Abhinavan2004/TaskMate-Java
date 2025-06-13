@@ -45,10 +45,7 @@ public class Entity {
 		return "Entity [ID=" + ID + ", Name=" + Name + ", Task=" + Task + ", status=" + status + "]";
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 
 }
