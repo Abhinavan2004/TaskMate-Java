@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.Connection,java.sql.DriverManager, com.DB.DBConnect" %>
+
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.DB.DBConnect" %>
+<%@ page import="com.DAO.TodoDAO" %>
+<%@ page import="com.entity.Entity" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,16 +62,32 @@ if(fmsg != null){
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Abhinav</td>
-        <td>Complete project</td>
-        <td>Pending</td>
-        <td>
-          <button type="button" class="btn btn-success">EDIT</button>
-          <button type="button" class="btn btn-danger">DELETE</button>
-        </td>
-      </tr>
+    <%
+TodoDAO dao = new TodoDAO(DBConnect.getConn());
+List<Entity> todo = dao.getTodo();
+for (Entity t : todo) {
+%>
+<tr>
+<td scope="row"><%=t.getID()%></td>
+<td scope="col"><%=t.getName()%></td>
+<td><%=t.getTask()%></td>
+                        <td>
+                            <% if("Completed".equals(t.getStatus())) { %>
+                                <span class="badge bg-success"><%= t.getStatus() %></span>
+                            <% } else if("Ongoing".equals(t.getStatus())) { %>
+                                <span class="badge bg-warning"><%= t.getStatus() %></span>
+                            <% } else { %>
+                                <span class="badge bg-secondary"><%= t.getStatus() %></span>
+                            <% } %>
+                        </td>
+
+<td><a href="" class="btn btn-sm btn-success">Edit</a> <a
+href="" class="btn btn-sm btn-danger">Delete</a></td>
+</tr>
+<% 
+}
+%>
+     
     </tbody>
   </table>
 </div>
