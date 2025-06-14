@@ -64,7 +64,30 @@ public class TodoDAO {
 		}
 		
 		return list;
-		
 	}
+	
+	public Entity gettoById(int id) {
+        Entity y = null;
+        
+        try {
+            String sql = "select * from todo_storage where id=?";
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);  // FIXED: Set parameter BEFORE executing query
+            ResultSet rs = ps.executeQuery();  // FIXED: Moved after setting parameter
+            
+            if(rs.next()) {  // FIXED: Changed while to if since we expect only one result
+                y = new Entity();
+                y.setID(rs.getInt(1));
+                y.setName(rs.getString(2));
+                y.setTask(rs.getString(3));
+                y.setStatus(rs.getString(4));
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();        
+        }
+        return y;
+    }
 	
 }

@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>TASKMATE : A Java TODO APP</title>
 <%@include file="components/all_css.jsp" %>
+
 </head>
 <body>
 <%@include file = "components/navbar.jsp" %>
@@ -81,8 +82,8 @@ for (Entity t : todo) {
                             <% } %>
                         </td>
 
-<td><a href="" class="btn btn-sm btn-success">Edit</a> <a
-href="" class="btn btn-sm btn-danger">Delete</a></td>
+<td><a href="Edit.jsp" class="btn btn-sm btn-success">Edit</a> 
+<a href="" class="btn btn-sm btn-danger">Delete</a></td>
 </tr>
 <% 
 }

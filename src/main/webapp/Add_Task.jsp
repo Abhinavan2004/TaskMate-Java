@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TASKMATE : A Java TODO APP</title>
 <%@include file="components/all_css.jsp" %>
 </head>
 <body class="bg-light">
