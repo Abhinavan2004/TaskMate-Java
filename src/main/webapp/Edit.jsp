@@ -8,6 +8,27 @@
 <head>
 <meta charset="UTF-8">
 <title>TASKMATE : A Java TODO APP</title>
+<style> 
+  body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        .page-title {
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-title i {
+            margin-right: 1rem;
+            color: #fbbf24;
+        }
+</style>
 <%@include file="components/all_css.jsp" %>
 </head>
 <body class="bg-light">
@@ -68,8 +89,10 @@ try {
     return;
 }
 %>
+<h1 class="page-title mt-auto">
+            <i class="fas fa-calendar-day"></i>Edit Your Task
+        </h1>
 
-<h2 class="text-center mt-5">EDIT YOUR TASK</h2>
 <div class="container">
     <!-- Content here -->
     <div class="card mt-4 mx-auto" style="max-width: 600px;">

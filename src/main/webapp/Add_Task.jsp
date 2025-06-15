@@ -5,11 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>TASKMATE : A Java TODO APP</title>
+<style> 
+  body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+</style>
 <%@include file="components/all_css.jsp" %>
 </head>
 <body class="bg-light">
 <%@include file="components/navbar.jsp" %>
-<h2 class="text-center mt-5">ADD A TASK</h2>
+<h2 class="text-center mt-5 text-white">ADD A TASK</h2>
 <div class="container">
   <!-- Content here -->
   <div class="card mt-4 mx-auto" style="max-width: 600px;">

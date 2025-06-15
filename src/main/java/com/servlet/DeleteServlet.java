@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.DAO.TodoDAO;
 import com.DB.DBConnect;
 
-@WebServlet("/delete")  // This should work
+@WebServlet("/delete") 
 public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
