@@ -82,8 +82,10 @@ for (Entity t : todo) {
                             <% } %>
                         </td>
 
-<td><a href="Edit.jsp" class="btn btn-sm btn-success">Edit</a> 
-<a href="" class="btn btn-sm btn-danger">Delete</a></td>
+<td><a href="Edit.jsp?id=<%= t.getID() %>" class="btn btn-sm btn-success">Edit</a>
+<a href="delete?id=<%= t.getID() %>" class="btn btn-sm btn-danger" 
+       onclick="return confirm('Are you sure you want to delete this task?')">Delete</a>
+</td>
 </tr>
 <% 
 }

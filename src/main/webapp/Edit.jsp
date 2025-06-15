@@ -14,35 +14,86 @@
 <%@include file="components/navbar.jsp" %>
 
 <%
-int id=Integer.parseInt(request.getParameter("id"));
-
-TodoDAO dao=new TodoDAO(DBConnect.getConn());
-Entity t = dao.gettoById(id);
+// Check if id parameter exists and is not null/empty
+String idParam = request.getParameter("id");
+if (idParam == null || idParam.trim().isEmpty()) {
 %>
+    <div class="container mt-5">
+        <div class="alert alert-danger text-center">
+            <h4>Error: Task ID is missing!</h4>
+            <p>Please select a valid task to edit.</p>
+            <a href="index.jsp" class="btn btn-primary">Go Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+<%
+    return;
+}
+
+int id = 0;
+Entity t = null;
+try {
+    id = Integer.parseInt(idParam);
+    TodoDAO dao = new TodoDAO(DBConnect.getConn());
+    t = dao.gettoById(id);
+    
+    // Check if task exists
+    if (t == null) {
+%>
+    <div class="container mt-5">
+        <div class="alert alert-warning text-center">
+            <h4>Task Not Found!</h4>
+            <p>The task you're looking for doesn't exist.</p>
+            <a href="index.jsp" class="btn btn-primary">Go Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+<%
+        return;
+    }
+} catch (NumberFormatException e) {
+%>
+    <div class="container mt-5">
+        <div class="alert alert-danger text-center">
+            <h4>Invalid Task ID!</h4>
+            <p>The provided task ID is not valid.</p>
+            <a href="index.jsp" class="btn btn-primary">Go Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+<%
+    return;
+}
+%>
+
 <h2 class="text-center mt-5">EDIT YOUR TASK</h2>
 <div class="container">
-  <!-- Content here -->
-  <div class="card mt-4 mx-auto" style="max-width: 600px;">
-  <div class="card-body">
-    <h5 class="card-title text-center mb-4">Your Task Details</h5>
-    
-    <form action="addTask" method="post">
-    
-      <!-- Hidden field to pass the task ID -->
+    <!-- Content here -->
+    <div class="card mt-4 mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-4">Your Task Details</h5>
+
+            <form action="updateTask" method="post">
+                <!-- Hidden field to pass the task ID -->
                 <input type="hidden" name="id" value="<%= t.getID() %>">
-    
-    
-    <div class="mb-3">
-        <label for="authorName" class="form-label">Author Name</label>
-        <input type="text" class="form-control" id="authorName" name="authorName" value="<%= t.getName() %>" placeholder="Enter author's name" required>
-      </div>
-      
-      <div class="mb-3">
-        <label for="taskName" class="form-label">Task Name</label>
-        <input type="text" class="form-control" id="taskName" name="taskName" value="<%= t.getTask() %>" placeholder="Enter task name" required>
-      </div>
-      
-     
+
+                <div class="mb-3">
+                    <label for="authorName" class="form-label">Author Name</label>
+                    <input type="text" class="form-control" id="authorName" name="authorName" 
+                           value="<%= t.getName() != null ? t.getName() : "" %>" 
+                           placeholder="Enter author's name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="taskName" class="form-label">Task Name</label>
+                    <input type="text" class="form-control" id="taskName" name="taskName" 
+                           value="<%= t.getTask() != null ? t.getTask() : "" %>" 
+                           placeholder="Enter task name" required>
+                </div>
+
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" name="status" required>
@@ -52,15 +103,14 @@ Entity t = dao.gettoById(id);
                         <option value="Completed" <%= "Completed".equals(t.getStatus()) ? "selected" : "" %>>Completed</option>
                     </select>
                 </div>
-      
-      <div class="d-grid gap-2">
+
+                <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Update Task</button>
                     <a href="index.jsp" class="btn btn-secondary">Cancel</a>
                 </div>
-    </form>
-  </div>
-</div>
-  
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>
