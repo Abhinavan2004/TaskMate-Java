@@ -14,13 +14,6 @@
 
 ---
 
-## 🖼️ Demo
-
-📌 Visit: **Live Demo** *(if hosted)*  
-> *(Add a link if hosted on platforms like Render, Railway, or local tunnel)*
-
----
-
 ## 🛠️ Tech Stack
 
 - Java (Servlets + JSP)  
@@ -113,13 +106,9 @@ Pull requests are welcome! If you’d like to contribute:
 
 ---
 
-## 📃 License
-
-This project is open-source and available under the **MIT License**.
-
----
-
 ## 📫 Contact
 
 **Created by [Abhinav](https://github.com/Abhinavan2004)**  
 If you like this project, don't forget to ⭐ the repo!
+
+Open for contributions
